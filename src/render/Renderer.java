@@ -59,7 +59,7 @@ public class Renderer {
    * @param filename
    */
   public void render(final double fov, final int width, final int height, final String filename) {
-    final ExecutorService exec = Executors.newFixedThreadPool(2);
+    final ExecutorService exec = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     createFrame(width, height, filename);
     final double w = 2 * Math.tan(Math.toRadians(0.5 * fov)); // width in world
