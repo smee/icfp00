@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TokenList {
+public class TokenList implements Iterable<TokenGroup>{
   private static final boolean DEBUG = false;
   LinkedList<TokenGroup> tokengroups;
 
@@ -38,7 +38,7 @@ public class TokenList {
   public String toString() {
     final StringBuilder sb = new StringBuilder();
     for (final TokenGroup tg : tokengroups) {
-      sb.append(tg.toString()).append(" ");
+      sb.append(tg.toString()).append("\n");
     }
     return sb.toString();
 

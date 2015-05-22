@@ -30,6 +30,15 @@ public class GmlFunction extends TokenGroup {
       g.evalToken(s, env);
     }
   }
+  public boolean isConstant(){
+	  for(TokenGroup tg:tl){
+		  if(tg instanceof GmlIdentifier)
+			  return false;
+		  else if(tg instanceof GmlFunction && !((GmlFunction)tg).isConstant())
+			  return false;
+	  }
+	  return true;
+  }
 
   @Override
   public String toString() {
@@ -40,6 +49,7 @@ public class GmlFunction extends TokenGroup {
     }
     sb.deleteCharAt(sb.length() - 1);
     sb.append(" }");
+    sb.append(isConstant()?"/*constant!*/":"");
     return sb.toString();
   }
 }

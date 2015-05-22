@@ -15,7 +15,7 @@ public class Tests {
    * @throws IOException
    */
   public static void main(final String[] args) throws IOException {
-    final TokenList prog = parseFile("fractalMovie.gml");
+    final TokenList prog = parseFile("intercubes.gml");// System.out.println(prog);
     prog.run();
   }
 

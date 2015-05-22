@@ -70,8 +70,6 @@ Best case hit: 1, 2, 3, 5, 6 --> 16 (*), 16 (+/-), 1 sqrt, 3 compare.(non-Javado
      */
     @Override
     protected Hit getShapeIntersection(Ray ray) {
-    	if(this==ray.getOriginShape())
-    		return null;
     	Triple origin = ray.getOrigin();
     	Triple direction = ray.getDirection();
     	

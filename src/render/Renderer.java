@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 
 import model.GmlFunction;
@@ -59,7 +60,9 @@ public class Renderer {
    * @param filename
    */
   public void render(final double fov, final int width, final int height, final String filename) {
-    final ExecutorService exec = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+	int num=Runtime.getRuntime().availableProcessors();
+	System.out.printf("Running on %d cores.\n",num);
+	final ExecutorService exec = Executors.newFixedThreadPool(num);
 
     createFrame(width, height, filename);
     final double w = 2 * Math.tan(Math.toRadians(0.5 * fov)); // width in world
@@ -188,7 +191,6 @@ public class Renderer {
     final JFrame frame = new JFrame(filename);
     frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     frame.setSize(width + 10, height + 10);
-
     img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     this.workingG = (Graphics2D) img.getGraphics();
     workingG.setBackground(Color.BLACK);
@@ -200,7 +202,8 @@ public class Renderer {
         g2.drawImage(img, 0, 0, null);
       }
     };
-    frame.getContentPane().add(panel);
+    JScrollPane jsp = new JScrollPane(panel);
+    frame.getContentPane().add(jsp);
     frame.pack();
     frame.setSize(width, height);
     frame.setVisible(true);

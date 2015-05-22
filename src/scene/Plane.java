@@ -32,8 +32,6 @@ public class Plane extends Shape {
 
     @Override
     protected Hit getShapeIntersection(Ray ray) {
-    	if(this==ray.getOriginShape())
-    		return null;
     	Triple origin = ray.getOrigin();
     	Triple direction = ray.getDirection();
     	
